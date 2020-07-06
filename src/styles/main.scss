@@ -1,3 +1,72 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.calendar {
+  display: flex;
+  flex-wrap: wrap;
+  width: 720px;
+  margin-left: -1px;
+}
+
+.calendar > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  margin: 0 0 1px 1px;
+  font-size: 30px;
+  background: #eee;
+  border: 1px solid black;
+  transition: all 0.5s ease;
+}
+
+.calendar > div:hover {
+  transform: translateY(-20px);
+  background: pink;
+  cursor: pointer;
+}
+
+.calendar-tue > div:first-of-type {
+  margin-left: 102px;
+}
+
+.calendar-wed > div:first-of-type {
+  margin-left: 202px;
+}
+
+.calendar-thu > div:first-of-type {
+  margin-left: 304px;
+}
+
+.calendar-fri > div:first-of-type {
+  margin-left: 405px;
+}
+
+.calendar-sat > div:first-of-type {
+  margin-left: 506px;
+}
+
+.calendar-sun > div:first-of-type {
+  margin-left: 607px;
+}
+
+@for $i from 1 through 31 {
+  .calendar > div:nth-child(#{$i}):after {
+    content: "#{$i}";
+  }
+
+  .calendar-30 > div:last-child {
+    display: none;
+  }
+
+  .calendar-29 > div:nth-child(n + 30) {
+    display: none;
+  }
 }
