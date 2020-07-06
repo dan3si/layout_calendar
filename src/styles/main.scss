@@ -1,3 +1,15 @@
+$days-of-week: (
+  "mon" : 0,
+  "tue" : 1,
+  "wed" : 2,
+  "thu" : 3,
+  "fri" : 4,
+  "sat" : 5,
+  "sun" : 6
+);
+
+$cell-size: 100px;
+
 * {
   box-sizing: border-box;
 }
@@ -18,8 +30,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100px;
-  width: 100px;
+  height: $cell-size;
+  width: $cell-size;
   margin: 0 0 1px 1px;
   font-size: 30px;
   background: #eee;
@@ -29,32 +41,13 @@ body {
 
 .calendar > div:hover {
   transform: translateY(-20px);
-  background: pink;
-  cursor: pointer;
+  background-color: pink;
 }
 
-.calendar-tue > div:first-of-type {
-  margin-left: 102px;
-}
-
-.calendar-wed > div:first-of-type {
-  margin-left: 202px;
-}
-
-.calendar-thu > div:first-of-type {
-  margin-left: 304px;
-}
-
-.calendar-fri > div:first-of-type {
-  margin-left: 405px;
-}
-
-.calendar-sat > div:first-of-type {
-  margin-left: 506px;
-}
-
-.calendar-sun > div:first-of-type {
-  margin-left: 607px;
+@each $days-week, $i in $days-of-week {
+  .calendar-#{$days-week} > div:first-of-type {
+    margin-left:  $i * $cell-size + $i + 1;
+  }
 }
 
 @for $i from 1 through 31 {
@@ -67,6 +60,10 @@ body {
   }
 
   .calendar-29 > div:nth-child(n + 30) {
+    display: none;
+  }
+
+  .calendar-28 > div:nth-child(n + 29) {
     display: none;
   }
 }
